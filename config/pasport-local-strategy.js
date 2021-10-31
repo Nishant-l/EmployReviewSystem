@@ -40,6 +40,9 @@ passport.deserializeUser((id,done)=>{ // the session id is retrived from cookie 
 passport.isAdmin = (req,res,next)=>{ // to check if the authenticated user is an admin
     if(req.isAuthenticated() && req.user.isAdmin === true){
         return next();
+    }else if(req.isAuthenticated() && req.user.isAdmin === false){
+        req.logout();
+        return res.redirect('/adminLogin');
     }else{
         return res.redirect('/adminLogin');//ToDo 
     }
