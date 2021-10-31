@@ -36,11 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
-
-app.get('/',(req,res)=>{
-    console.log(req.ip);
-    res.send('server is up and running');
-})
+app.use('/',require('./routs'));
 
 app.listen(port,(err)=>{
     if(err){

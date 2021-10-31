@@ -41,7 +41,7 @@ passport.isAdmin = (req,res,next)=>{ // to check if the authenticated user is an
     if(req.isAuthenticated() && req.user.isAdmin === true){
         return next();
     }else{
-        return res.redirect('back');//ToDo 
+        return res.redirect('/adminLogin');//ToDo 
     }
 };
 //-------------------------------------------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ passport.isEmploye = (req,res,next) =>{ //to check if the authenticate user is a
     if(req.isAuthenticated()){
         return next();
     }
-    return res.redirect('back');
+    return res.redirect('/employeeLogin');
 };
 //-------------------------------------------------------------------------------------------------------------------------------------------
 

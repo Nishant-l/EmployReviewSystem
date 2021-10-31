@@ -14,6 +14,10 @@ const employeSchama = mongoose.Schema({
         type:String,
         required:true,
     },
+    isAdmin:{
+        type:Boolean,
+        required:true
+    },
     toReview:[{
         employId:mongoose.Schema.Types.ObjectId,
         ref:this
