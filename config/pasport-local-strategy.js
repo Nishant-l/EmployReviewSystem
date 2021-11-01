@@ -3,19 +3,25 @@ const localStrategy = require('passport-local').Strategy;
 const Employe = require('../model/employe');
 
 //-------------------------------------------------------------------------------------------------------------------------------------------
-passport.use(new localStrategy({usernameField:'email'},(email,password,done)=>{ // local stretagy to validate the employe login
+passport.use(new localStrategy({usernameField:'email',passReqToCallback:true},(req,email,password,done)=>{ // local stretagy to validate the employe login
     Employe.findOne({email:email},(err,user)=>{
+        console.log(req.url);
         if(err){
             console.log('error while loging in employee -----> Passport');
             return done(err);
         }
         if(!user || user.password != password){
             console.log('wrong password employee ----> passport');
-            done(null,false);
+            return done(null,false);
         }
         if(user && user.password == password){
+            if(req.url === '/adminLogin-form'){
+                if(user.isAdmin != true){
+                    return done(null,false);
+                }
+            }
             console.log('login successfull of employeee -----> passport');
-            done(null,user);
+            return done(null,user);
         }
         return done(null,false);
     })
@@ -40,7 +46,7 @@ passport.deserializeUser((id,done)=>{ // the session id is retrived from cookie 
 passport.isAdmin = (req,res,next)=>{ // to check if the authenticated user is an admin
     if(req.isAuthenticated() && req.user.isAdmin === true){
         return next();
-    }else if(req.isAuthenticated() && req.user.isAdmin === false){
+    }else if(req.isAuthenticated() && req.user.isAdmin != true){
         req.logout();
         return res.redirect('/adminLogin');
     }else{

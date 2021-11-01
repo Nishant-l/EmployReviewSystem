@@ -9,4 +9,9 @@ router.get('/show',(req,res)=>{
     res.send('hollaa')
 })
 
+router.get('/logout',(req,res)=>{
+    req.logOut();
+    res.redirect('/employeeLogin');
+})
+
 module.exports = router;
