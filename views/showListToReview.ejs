@@ -1,0 +1,9 @@
+<h1>List of employee to be reviewed</h1>
+
+<ul>
+    <%for(i of employee.toReview){%>
+        <li>
+            <a href="/employee/review/<%=i._id%>"><%=i.name %></a>
+        </li>
+    <%}%>
+</ul>

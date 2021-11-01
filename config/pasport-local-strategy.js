@@ -4,7 +4,7 @@ const Employe = require('../model/employe');
 
 //-------------------------------------------------------------------------------------------------------------------------------------------
 passport.use(new localStrategy({usernameField:'email',passReqToCallback:true},(req,email,password,done)=>{ // local stretagy to validate the employe login
-    Employe.findOne({email:email},(err,user)=>{
+    Employe.findOne({email:email},(err,user)=>{ //find the userwith unique email exists
         console.log(req.url);
         if(err){
             console.log('error while loging in employee -----> Passport');
@@ -14,10 +14,10 @@ passport.use(new localStrategy({usernameField:'email',passReqToCallback:true},(r
             console.log('wrong password employee ----> passport');
             return done(null,false);
         }
-        if(user && user.password == password){
-            if(req.url === '/adminLogin-form'){
-                if(user.isAdmin != true){
-                    return done(null,false);
+        if(user && user.password == password){ //if user and password are both valid
+            if(req.url === '/adminLogin-form'){ // check if the request is for Admin login
+                if(user.isAdmin != true){ //if the request is for admin login and the user is not a admin
+                    return done(null,false); // return callback with false
                 }
             }
             console.log('login successfull of employeee -----> passport');

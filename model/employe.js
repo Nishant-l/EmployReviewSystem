@@ -19,17 +19,17 @@ const employeSchama = mongoose.Schema({
         required:true
     },
     toReview:[{
-        employId:mongoose.Schema.Types.ObjectId,
-        ref:this,
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Employe'
     }],
     hadRevieved:[{
-        employId:mongoose.Schema.Types.ObjectId,
-        ref:this
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Employe'
     }],
     myReview:[{
         reviewedBy:{
-            employId:mongoose.Schema.Types.ObjectId,
-            ref:this
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Employe'
         },
         reviewScore:{
             type:Number,
