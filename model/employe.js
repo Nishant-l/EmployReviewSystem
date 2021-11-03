@@ -22,7 +22,7 @@ const employeSchama = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Employe'
     }],
-    hadRevieved:[{
+    hadReviewed:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Employe'
     }],

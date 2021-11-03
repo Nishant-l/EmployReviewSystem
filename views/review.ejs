@@ -1,7 +1,7 @@
 <h1>Review</h1>
 <h1><%= employee.name %></h1>
 
-<form action="/employee/review/fidback-form" method="post">
+<form action="/employee/review/fidback-form/<%= employee._id %>" method="post">
 
     <input type="radio" name="feedback" id="" value="5">Best😁
     <input type="radio" name="feedback" id="" value="4">Good🙂
