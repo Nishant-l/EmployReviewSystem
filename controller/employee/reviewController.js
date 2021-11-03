@@ -1,3 +1,4 @@
+const { populate } = require('../../model/employe');
 const Employee = require('../../model/employe');
 
 module.exports.homeView = (req,res)=>{
@@ -27,4 +28,18 @@ module.exports.review_form = (req,res) => {
         // console.log(req.body);
         // console.log(req.params);
 
+}
+
+
+module.exports.myReview = (req,res) => {
+    Employee.findById(req.user.id)
+    .populate({
+        path:'myReview',
+        populate:{
+            path:'reviewedBy'
+        }
+    })
+    .exec((err,myInfo)=>{
+        res.render('myReview',{myInfo:myInfo});
+    })
 }

@@ -1,0 +1,10 @@
+<h1>My Review by others</h1>
+<!-- <%= locals.myInfo%> -->
+<ul>
+<%for(i of myInfo.myReview){%>
+    <li>
+        <%= i.reviewScore %>
+        <%= i.reviewedBy.name%>
+    </li>
+<%}%>
+</ul>

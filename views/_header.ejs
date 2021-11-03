@@ -8,7 +8,8 @@
 
     <%if(locals.user){%>
         <a href="/employee">Employee</a>&nbsp;
-        <a role="button" href="/employee/showListToReview">show</a>&nbsp;
+        <a role="button" href="/employee/showListToReview">List-of-emp-to-review</a>&nbsp;
+        <a href="/employee/review/myReviews">My-reviews</a>
     <%}%>
 
     <%if(locals.user && !user.isAdmin){%>
