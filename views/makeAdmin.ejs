@@ -1,0 +1,15 @@
+<h1>Select from Employee to make them Admin</h1>
+
+<form action="/admin/makeAdmin-form" method="post">
+    
+    <ul>
+        <%for(e of allEmployee){%>
+            <%if(!e.isAdmin){%>
+                <li>
+                    <input type="checkbox" name="futureAdmin" value="<%= e._id %>"><%= e.name %>
+                </li>
+            <%}%>
+        <%}%>
+    </ul>
+    <input type="submit">
+</form>
