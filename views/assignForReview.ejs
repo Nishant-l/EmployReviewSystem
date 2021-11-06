@@ -12,18 +12,27 @@
     </ul>
 
     <h3>Select member to be reviewrd</h3>
-    <ul class="block">
+    <ul class="bloc">
         <%for(e of employe){%>
             <li id= "<%=e._id%>" >
                 <%= e.name %>
-                <input type="checkbox" name="toBeReviewed" value="<%=e._id%>">
+                <input type="checkbox" name="toBeReviewed" value="<%=e._id%>" class="<%=e._id%>">
             </li>
         <%}%>
     </ul>
     <input type="submit">
 </form>
 <script src="/demo.js"></script>
-<!-- <% const regex = new RegExp("[e]") %>
+<!-- <script> // ToDo: for making the check box inactive when the employ is alredy assigned for review or reviewed by the peer employee
+    const aa = document.querySelector('.block');
+    aa.addEventListener('click',(e)=>{
+        console.log(e.target);
+        const bb = document.querySelector('.bloc');
+        const cc = bb.querySelector(e.target.value);
+        console.log(cc);
+    });
+</script> --> 
+<!-- <% const regex = new RegExp("[e]") %> //ToDo: implement the search functionality
 
 <%= employe.filter(e => regex.test(e.name)) %> -->
 

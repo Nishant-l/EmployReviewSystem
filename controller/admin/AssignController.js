@@ -18,7 +18,7 @@ module.exports.assignForReviewForm = (req,res) => {
             for(r of req.body.toBeReviewed){ //if js object iterate over it
                 let count =0; 
                 for(k of reveiwer.toReview){ //iterate over all the to be reveived array to check if the id is alredy present
-                    if(k.id == r){ //if present increase the count
+                    if(k._id.toHexString() == r){ //if present increase the count
                         count++;
                     }
                 }

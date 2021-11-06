@@ -9,4 +9,6 @@ router.post('/assignForReview-form',assignController.assignForReviewForm);
 router.post('/makeAdmin-form',assignController.makeAdmin_form)
 router.get('/makeAdmin',assignController.makeAdmin);
 
+router.use('/employeeManagement',require('./employeeManagement'));
+
 module.exports = router;
