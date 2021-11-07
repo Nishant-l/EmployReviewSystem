@@ -1,0 +1,21 @@
+<h1>Update Employee Info</h1>
+
+<h3><label for="changeEmpInfo">Change employee personal info</label></h3>
+<form action="/admin//employeeManagement/update-form/<%= empInfo._id %>" id="changeEmpInfo" method="post">
+    <label for="name">Name</label>
+    <input type="text" value="<%= empInfo.name %>" id="name" name="name"><br>
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" value="<%= empInfo.email %>"><br>
+    <input type="submit">
+</form><br>
+
+<h3><label for="MyReview">review of <%=empInfo.name%></label></h3>
+<ul id="MyReview">
+    <%for(rev of empInfo.myReview){%>
+        <li>
+            <%= rev.reviewScore%>
+            <%= rev.reviewedBy.name%>&nbsp;
+            <a href="">✏️</a>
+        </li>
+    <%}%>
+</ul>

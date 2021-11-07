@@ -1,1 +1,10 @@
 <h1>List Of All Employees</h1>
+
+<ul>
+    <% for(emp of AllEmployee){%>
+        <li>
+            <a href=""><%= emp.name %></a> &nbsp;&nbsp;
+            <a href="/admin//employeeManagement/Update-emloyee-profile/<%= emp.id %>">✏️</a>
+        </li>
+    <%}%>
+</ul>
