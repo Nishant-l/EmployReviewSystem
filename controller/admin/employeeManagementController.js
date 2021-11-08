@@ -30,5 +30,31 @@ module.exports.updateEmpInfo_form = (req,res)=>{ // controller to update employe
             res.redirect('back');
             console.log(employee);
         }
+        return res.redirect('back');
     })
+}
+
+module.exports.AdminReviewView = (req,res)=>{
+    Employee.findById(req.params.id)
+            .populate({
+                path:'myReview',
+                populate:{
+                    path:'reviewedBy'
+                }
+            })
+            .exec((err,empolyee)=>{
+                return res.render('AdminEditReviewView',{empolyeeInfo:empolyee});
+            }) 
+}
+
+module.exports.updateReviewForm = (req,res)=>{ //controller to update the review of an employee which is reviewed by someone else
+    Employee.findById(req.query.reviewOf,(err,reviewOFF)=>{ // find the employee whose reviewee is to be edited
+        for(i of reviewOFF.myReview){ // find from the myReview array of the employee the reviewer whose review is to be updated
+            if(i.reviewedBy._id.toString()===req.query.reviewedBy){ //match the reviewer whose review is to be updated
+                i.reviewScore = req.body.feedback;
+                reviewOFF.save()
+            }
+        }
+    })
+    return res.redirect('back');
 }

@@ -1,7 +1,7 @@
 <h1>Update Employee Info</h1>
 
 <h3><label for="changeEmpInfo">Change employee personal info</label></h3>
-<form action="/admin//employeeManagement/update-form/<%= empInfo._id %>" id="changeEmpInfo" method="post">
+<form action="/admin/employeeManagement/update-form/<%= empInfo._id %>" id="changeEmpInfo" method="post">
     <label for="name">Name</label>
     <input type="text" value="<%= empInfo.name %>" id="name" name="name"><br>
     <label for="email">Email</label>
@@ -15,7 +15,15 @@
         <li>
             <%= rev.reviewScore%>
             <%= rev.reviewedBy.name%>&nbsp;
-            <a href="">✏️</a>
+            <!-- <a href="/admin/employeeManagement/ReviewView/<%= empInfo._id %>">✏️</a> -->
+            <form action="/admin/employeeManagement/updateReview-form/?reviewOf=<%= empInfo._id %>&reviewedBy=<%= rev.reviewedBy._id %>" method="post">
+                <input type="radio" name="feedback" id="" value="5" <% if(rev.reviewScore == 5) {%> checked <%}%> >Best😁
+                <input type="radio" name="feedback" id="" value="4" <% if(rev.reviewScore == 4) {%> checked <%}%> >Good🙂
+                <input type="radio" name="feedback" id="" value="3" <% if(rev.reviewScore == 3) {%> checked <%}%> >Ok😐
+                <input type="radio" name="feedback" id="" value="2" <% if(rev.reviewScore == 2) {%> checked <%}%> >Poor🙁
+                <input type="radio" name="feedback" id="" value="1" <% if(rev.reviewScore == 1) {%> checked <%}%> >very Poor😡
+                <input type="submit">
+            </form>
         </li>
     <%}%>
 </ul>
