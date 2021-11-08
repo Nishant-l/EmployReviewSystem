@@ -1,10 +1,18 @@
+<h1>Create new Employee</h1>
+<form action="/employeeSignUp-form" method="post">
+    <input type="email" name="email" id="" placeholder="email" required>
+    <input type="password" name="password" id="" placeholder="password" required>
+    <input type="text" name="name" id="" placeholder="name" required>
+    <input type="submit">
+</form>
+
 <h1>List Of All Employees</h1>
 
 <ul>
     <% for(emp of AllEmployee){%>
         <li>
             <a href=""><%= emp.name %></a> &nbsp;&nbsp;
-            <a href="/admin//employeeManagement/Update-emloyee-profile/<%= emp.id %>">✏️</a>
+            <a href="/admin/employeeManagement/Update-emloyee-profile/<%= emp.id %>">✏️</a>
         </li>
     <%}%>
 </ul>

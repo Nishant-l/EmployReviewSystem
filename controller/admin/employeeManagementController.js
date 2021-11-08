@@ -50,9 +50,10 @@ module.exports.AdminReviewView = (req,res)=>{
 module.exports.updateReviewForm = (req,res)=>{ //controller to update the review of an employee which is reviewed by someone else
     Employee.findById(req.query.reviewOf,(err,reviewOFF)=>{ // find the employee whose reviewee is to be edited
         for(i of reviewOFF.myReview){ // find from the myReview array of the employee the reviewer whose review is to be updated
-            if(i.reviewedBy._id.toString()===req.query.reviewedBy){ //match the reviewer whose review is to be updated
+            if(i.reviewedBy._id.toString()===req.query.reviewedBy && i.reviewScore != req.body.feedback){ //match the reviewer whose review is to be updated
                 i.reviewScore = req.body.feedback;
                 reviewOFF.save()
+                console.log('in');
             }
         }
     })
