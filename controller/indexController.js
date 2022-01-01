@@ -1,15 +1,25 @@
+const { localsName } = require('ejs');
 const Employee = require('../model/employe');
 
 module.exports.employeeLogIn = (req,res) =>{
-    res.render('employeLogin');
+    if(req.isAuthenticated()){
+        return res.redirect('/employee/showListToReview');
+    }
+    return res.render('employeLogin');
 }
 
 module.exports.employeeSignUp = (req,res) => {
-    res.render('employeSignUp');
+    if(req.isAuthenticated()){
+        return res.redirect('/employee/showListToReview');
+    }
+    return res.render('employeSignUp');
 }
 
 module.exports.adminLogin = (req,res) => {
-    res.render('adminLogin');
+    if(req.isAuthenticated()){
+        return res.redirect('/employee/showListToReview');
+    }
+    return res.render('adminLogin');
 }
 
 module.exports.createEmployee = (req,res) => {

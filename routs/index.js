@@ -3,6 +3,10 @@ const router = express.Router();
 const passport = require('passport');
 const indexController = require('../controller/indexController')
 
+router.get('/',(req,res)=>{
+    res.redirect('/employeeLogin');
+})
+
 //routs for rendering login and sign-up pages
 router.get('/employeeLogin',indexController.employeeLogIn);
 router.get('/employeeSignup',indexController.employeeSignUp);

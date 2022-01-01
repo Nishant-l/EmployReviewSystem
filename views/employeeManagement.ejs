@@ -8,11 +8,17 @@
 
 <h1>List Of All Employees</h1>
 
-<ul>
+<table style="width: 40%;">
+    <tr>
+        <th>Name of employee</th>
+        <th>Update Employee details and review</th>
+        <th>Delete employee</th>
+    </tr>
     <% for(emp of AllEmployee){%>
-        <li>
-            <a href=""><%= emp.name %></a> &nbsp;&nbsp;
-            <a href="/admin/employeeManagement/Update-emloyee-profile/<%= emp.id %>">✏️</a>
-        </li>
+        <tr>
+            <td><h3 style="display: inline;"><%= emp.name %></h3></td>
+            <td><a href="/admin/employeeManagement/Update-emloyee-profile/<%= emp.id %>">✏️</a></td>
+            <td><a href="">🗑</a></td>
+        </tr>
     <%}%>
-</ul>
+</table>
