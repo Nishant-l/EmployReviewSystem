@@ -1,4 +1,7 @@
+const { resolveInclude } = require('ejs');
+const { readBuilderProgram } = require('typescript');
 const Employee = require('../../model/employe');
+const { myReview } = require('../employee/reviewController');
 
 module.exports.demo = (req,res)=>{ // to display the employeeManagement page
     Employee.find({},(err,AllEmployee) => {
@@ -58,4 +61,28 @@ module.exports.updateReviewForm = (req,res)=>{ //controller to update the review
         }
     })
     return res.redirect('back');
+}
+
+module.exports.deleteAnEmployee = (req,res) => {
+    const toDelete = req.params.id;
+    if(toDelete != req.user.id){ //check if the admin is deleating itself canbe deleated by other admins
+        console.log('can be deleated');
+
+        Employee.findById(toDelete)
+        .then(async (e)=>{
+            for(i of e.hadReviewed){
+                await Employee.findByIdAndUpdate(i,{$pull:{myReview:{reviewedBy:toDelete}}})
+                .then(console.log('----Deleated-----'));
+            }
+            return e;
+        })
+        .then(async (e)=>{
+            for(i of e.myReview){
+                console.log(i);
+                await Employee.findByIdAndUpdate(i.reviewedBy,{$pull:{hadReviewed:e.id}})
+            }
+            e.remove();
+        })
+        .then(()=>res.redirect('back'));
+    }
 }

@@ -29,6 +29,11 @@ module.exports.createEmployee = (req,res) => {
         email:req.body.email,
         password:req.body.password,
         isAdmin:false
+    },(err)=>{
+        if(err){
+            console.log('email alredy exists');
+            return res.redirect('back');
+        }
+        return res.redirect('back');
     })
-    res.redirect('back');
 }
