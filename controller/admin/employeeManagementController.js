@@ -66,23 +66,23 @@ module.exports.updateReviewForm = (req,res)=>{ //controller to update the review
 module.exports.deleteAnEmployee = (req,res) => {
     const toDelete = req.params.id;
     if(toDelete != req.user.id){ //check if the admin is deleating itself canbe deleated by other admins
-        console.log('can be deleated');
+        // console.log('can be deleated');
 
-        Employee.findById(toDelete)
+        Employee.findById(toDelete) //find employee to be deleated
         .then(async (e)=>{
-            for(i of e.hadReviewed){
-                await Employee.findByIdAndUpdate(i,{$pull:{myReview:{reviewedBy:toDelete}}})
+            for(i of e.hadReviewed){ //iterate over the array of employees to whom they had reviewed
+                await Employee.findByIdAndUpdate(i,{$pull:{myReview:{reviewedBy:toDelete}}}) //find the employee who was reviewed and pop it out of array
                 .then(console.log('----Deleated-----'));
             }
             return e;
         })
         .then(async (e)=>{
-            for(i of e.myReview){
-                console.log(i);
-                await Employee.findByIdAndUpdate(i.reviewedBy,{$pull:{hadReviewed:e.id}})
+            for(i of e.myReview){ //iterate over the array of emp who had reviewed the to be deleated employee
+                // console.log(i);
+                await Employee.findByIdAndUpdate(i.reviewedBy,{$pull:{hadReviewed:e.id}}) //deleated the to be deleated employee from the emp list emp list had reviewed
             }
-            e.remove();
+            e.remove(); //delete the to be deleated employee from db
         })
-        .then(()=>res.redirect('back'));
+        .then(()=>res.redirect('back')); //redirect back to the page
     }
 }
