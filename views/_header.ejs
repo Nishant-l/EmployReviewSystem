@@ -1,26 +1,141 @@
+<link rel="stylesheet" href="/css/header.css">
 <header>
-    <h1>Header ...</h1>
+    <nav class="navbar navbar-light">
+    <button id="HamBurgerIcon" class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><span class="navbar-toggler-icon"></span></button>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Please Select Action From Following</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          
+                <%if(locals.user && locals.user.isAdmin){%> 
+                    <div class="nav-item">
+                        <a class="nav-link active" href="/admin/assignForReview">AssignForReview</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link active" href="/admin/makeAdmin">Make-Admin</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link active" href="/admin/logout">AdminLogOut</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link active" href="/admin/employeeManagement/viewAllEmployee">EmployeeManagement</a>
+                    </div>
+                <%}%>
+            
+                <%if(locals.user){%>
+                    <div class="nav-item">
+                        <a class="nav-link active" href="/employee">Employee</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link active" role="button" href="/employee/showListToReview">List-of-emp-to-review</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link active" href="/employee/review/myReviews">My-reviews</a>
+                    </div>
+                <%}%>
+            
+                <%if(locals.user && !user.isAdmin){%>
+                    <div class="nav-item">
+                        <a class="nav-link active" role="button" href="/employee/logout">EmployeeLogout</a>
+                    </div>
+                <%}%>
+            
+                <%if(!locals.user){%>
+                    <div class="nav-item">
+                        <a class="nav-link active" href="/employeeLogin">EmployeeLogin</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link active" href="/adminLogin">AdminLogin</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link active" href="/employeeSignup">EmployeeSignUp</a>
+                    </div>
+                <%}%>
+            
+        </div>
+    </div>
+
+</nav>
+
+    
+    <h4 id="Heading">Employee-Review-System</h4>
+    <ul id="ForBigScreen" hidden>
     <%if(locals.user && locals.user.isAdmin){%> 
-        <a href="/admin/assignForReview">AssignForReview</a>&nbsp;
-        <a href="/admin/makeAdmin">Make-Admin</a>&nbsp;
-        <a href="/admin/logout">AdminLogOut</a>&nbsp;
-        <a href="/admin/employeeManagement/viewAllEmployee">EmployeeManagement</a>
+        <div class="nav-item">
+            <a class="nav-link active" href="/admin/assignForReview">AssignForReview</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link active" href="/admin/makeAdmin">Make-Admin</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link active" href="/admin/logout">AdminLogOut</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link active" href="/admin/employeeManagement/viewAllEmployee">EmployeeManagement</a>
+        </div>
     <%}%>
 
     <%if(locals.user){%>
-        <a href="/employee">Employee</a>&nbsp;
-        <a role="button" href="/employee/showListToReview">List-of-emp-to-review</a>&nbsp;
-        <a href="/employee/review/myReviews">My-reviews</a>
+        <div class="nav-item">
+            <a class="nav-link active" href="/employee">Employee</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link active" role="button" href="/employee/showListToReview">List-of-emp-to-review</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link active" href="/employee/review/myReviews">My-reviews</a>
+        </div>
     <%}%>
 
     <%if(locals.user && !user.isAdmin){%>
-        <a role="button" href="/employee/logout">EmployeeLogout</a>&nbsp;
+        <div class="nav-item">
+            <a class="nav-link active" role="button" href="/employee/logout">EmployeeLogout</a>
+        </div>
     <%}%>
 
     <%if(!locals.user){%>
-        <a href="/employeeLogin">EmployeeLogin</a>&nbsp;
-        <a href="/adminLogin">AdminLogin</a>&nbsp;
-        <a href="/employeeSignup">EmployeeSignUp</a>&nbsp;
+        <div class="nav-item">
+            <a class="nav-link active" href="/employeeLogin">EmployeeLogin</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link active" href="/adminLogin">AdminLogin</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link active" href="/employeeSignup">EmployeeSignUp</a>
+        </div>
     <%}%>
+</ul>
+</div>
+</div>
+
+<script>
+    let a = window.visualViewport.width;
+    console.log(a);
+    const b = document.getElementById('ForBigScreen');
+    const c = document.getElementById('HamBurgerIcon');
+    if(a>1000){
+        b.hidden = false;
+        c.hidden = true;
+    }else{
+        b.hidden = true;
+        c.hidden = false;
+    }
+    window.addEventListener('resize',()=>{
+        let a = window.visualViewport.width;
+        const c = document.getElementById('HamBurgerIcon');
+        console.log(a);
+        let b = document.getElementById('ForBigScreen');
+        if(a>1000){
+            b.hidden = false;
+            c.hidden = true;
+        }else{
+            b.hidden = true;
+            c.hidden = false;
+        }
+    })
+
+</script>
 
 </header>
