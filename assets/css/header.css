@@ -5,25 +5,33 @@ header{
     display: flex;
     flex-direction: row;
  }
- header ul{
-     width: 85vw;
-     display: flex;
-     justify-content: flex-end;
+header ul{
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: wrap;
  }
- li{
-     padding-left: 20px;
+header ul a{
+     margin-left: 0.5%;
+     margin-bottom: 1%;
  }
  #Heading{
     padding: 6px;
     border-top: 6px solid black;
     border-bottom: 6px solid black;
     font-size: larger;
-    margin-left: 4%;
+    margin-left: 2%;
     width: 60%;
-    max-width: 400px;
+    max-width: 300px;
     max-height: 50px;
     text-align: center;
     font-weight: 300;
+ }
+
+ .side-div-nav{
+     margin-bottom: 2%;
+     
  }
 
  #HamBurgerIcon{

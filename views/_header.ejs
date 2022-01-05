@@ -10,47 +10,47 @@
         <div class="offcanvas-body">
           
                 <%if(locals.user && locals.user.isAdmin){%> 
-                    <div class="nav-item">
-                        <a class="nav-link active" href="/admin/assignForReview">AssignForReview</a>
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" href="/admin/assignForReview">AssignForReview</a>
                     </div>
-                    <div class="nav-item">
-                        <a class="nav-link active" href="/admin/makeAdmin">Make-Admin</a>
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" href="/admin/makeAdmin">Make-Admin</a>
                     </div>
-                    <div class="nav-item">
-                        <a class="nav-link active" href="/admin/logout">AdminLogOut</a>
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" href="/admin/logout">AdminLogOut</a>
                     </div>
-                    <div class="nav-item">
-                        <a class="nav-link active" href="/admin/employeeManagement/viewAllEmployee">EmployeeManagement</a>
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" href="/admin/employeeManagement/viewAllEmployee">EmployeeManagement</a>
                     </div>
                 <%}%>
             
                 <%if(locals.user){%>
-                    <div class="nav-item">
-                        <a class="nav-link active" href="/employee">Employee</a>
+                    <!-- <div class="side-div-nav">
+                        <a class="btn btn-warning" href="/employee">Employee</a>
+                    </div> -->
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" role="button" href="/employee/showListToReview">To Review</a>
                     </div>
-                    <div class="nav-item">
-                        <a class="nav-link active" role="button" href="/employee/showListToReview">List-of-emp-to-review</a>
-                    </div>
-                    <div class="nav-item">
-                        <a class="nav-link active" href="/employee/review/myReviews">My-reviews</a>
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" href="/employee/review/myReviews">My-reviews</a>
                     </div>
                 <%}%>
             
                 <%if(locals.user && !user.isAdmin){%>
-                    <div class="nav-item">
-                        <a class="nav-link active" role="button" href="/employee/logout">EmployeeLogout</a>
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" role="button" href="/employee/logout">EmployeeLogout</a>
                     </div>
                 <%}%>
             
                 <%if(!locals.user){%>
-                    <div class="nav-item">
-                        <a class="nav-link active" href="/employeeLogin">EmployeeLogin</a>
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" href="/employeeLogin">EmployeeLogin</a>
                     </div>
-                    <div class="nav-item">
-                        <a class="nav-link active" href="/adminLogin">AdminLogin</a>
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" href="/adminLogin">AdminLogin</a>
                     </div>
-                    <div class="nav-item">
-                        <a class="nav-link active" href="/employeeSignup">EmployeeSignUp</a>
+                    <div class="side-div-nav">
+                        <a class="btn btn-warning" href="/employeeSignup">EmployeeSignUp</a>
                     </div>
                 <%}%>
             
@@ -62,51 +62,48 @@
     
     <h4 id="Heading">Employee-Review-System</h4>
     <ul id="ForBigScreen" hidden>
-    <%if(locals.user && locals.user.isAdmin){%> 
-        <div class="nav-item">
-            <a class="nav-link active" href="/admin/assignForReview">AssignForReview</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link active" href="/admin/makeAdmin">Make-Admin</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link active" href="/admin/logout">AdminLogOut</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link active" href="/admin/employeeManagement/viewAllEmployee">EmployeeManagement</a>
-        </div>
-    <%}%>
+        <%if(locals.user && locals.user.isAdmin){%> 
+            
+                <a class="btn btn-warning" href="/admin/assignForReview">Assign For Review</a>
+            
+            
+                <a class="btn btn-warning" href="/admin/makeAdmin">Make Admin</a>
+            
+            
+                <a class="btn btn-warning" href="/admin/logout">Admin LogOut</a>
+            
+            
+                <a class="btn btn-warning" href="/admin/employeeManagement/viewAllEmployee">Admin Management</a>
+            
+        <%}%>
 
-    <%if(locals.user){%>
-        <div class="nav-item">
-            <a class="nav-link active" href="/employee">Employee</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link active" role="button" href="/employee/showListToReview">List-of-emp-to-review</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link active" href="/employee/review/myReviews">My-reviews</a>
-        </div>
-    <%}%>
+        <%if(locals.user){%>
+            
+                <!-- <a class="btn btn-warning" href="/employee">Employee</a> -->
+            
+            
+                <a class="btn btn-warning" role="button" href="/employee/showListToReview">To Review</a>
+            
+            
+                <a class="btn btn-warning" href="/employee/review/myReviews">My Reviews</a>
+            
+        <%}%>
 
-    <%if(locals.user && !user.isAdmin){%>
-        <div class="nav-item">
-            <a class="nav-link active" role="button" href="/employee/logout">EmployeeLogout</a>
-        </div>
-    <%}%>
+        <%if(locals.user && !user.isAdmin){%>
+            
+                <a class="btn btn-warning" role="button" href="/employee/logout">EmployeeLogout</a>
+            
+        <%}%>
 
-    <%if(!locals.user){%>
-        <div class="nav-item">
-            <a class="nav-link active" href="/employeeLogin">EmployeeLogin</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link active" href="/adminLogin">AdminLogin</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link active" href="/employeeSignup">EmployeeSignUp</a>
-        </div>
-    <%}%>
-</ul>
+        <%if(!locals.user){%>
+
+                <a class="btn btn-warning" href="/employeeLogin">EmployeeLogin</a>
+        
+                <a class="btn btn-warning" href="/adminLogin">AdminLogin</a>
+        
+                <a class="btn btn-warning" href="/employeeSignup">EmployeeSignUp</a>
+        <%}%>
+    </ul>
 </div>
 </div>
 
@@ -115,7 +112,7 @@
     console.log(a);
     const b = document.getElementById('ForBigScreen');
     const c = document.getElementById('HamBurgerIcon');
-    if(a>1000){
+    if(a>1250){
         b.hidden = false;
         c.hidden = true;
     }else{

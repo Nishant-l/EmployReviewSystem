@@ -1,15 +1,19 @@
-<h1>Select from Employee to make them Admin</h1>
-
-<form action="/admin/makeAdmin-form" method="post">
+<link rel="stylesheet" href="/css/makeAdmin.css">
+<div class="shadow p-3 mb-5 bg-body rounded" id="container_makeAdmin">
+    <h1>Select from Employee to make them Admin</h1>
     
-    <ul>
-        <%for(e of allEmployee){%>
-            <%if(!e.isAdmin){%>
-                <li>
-                    <input type="checkbox" name="futureAdmin" value="<%= e._id %>"><%= e.name %>
-                </li>
+    <form action="/admin/makeAdmin-form" method="post">
+    
+            <%for(e of allEmployee){%>
+                <%if(!e.isAdmin){%>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="futureAdmin" value="<%= e._id %>" id="<%= e._id %>">
+                        <label class="form-check-label" for="<%= e._id %>">
+                            <%= e.name %>
+                        </label>
+                    </div>
+                <%}%>
             <%}%>
-        <%}%>
-    </ul>
-    <input type="submit">
-</form>
+            <button type="submit" class="btn btn-dark">Make Admin</button>
+    </form>
+</div>
