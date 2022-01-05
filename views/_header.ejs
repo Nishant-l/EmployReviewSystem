@@ -17,10 +17,10 @@
                         <a class="btn btn-warning" href="/admin/makeAdmin">Make-Admin</a>
                     </div>
                     <div class="side-div-nav">
-                        <a class="btn btn-warning" href="/admin/logout">AdminLogOut</a>
+                        <a class="btn btn-warning" href="/admin/employeeManagement/viewAllEmployee">EmployeeManagement</a>
                     </div>
                     <div class="side-div-nav">
-                        <a class="btn btn-warning" href="/admin/employeeManagement/viewAllEmployee">EmployeeManagement</a>
+                        <a class="btn btn-warning" href="/admin/logout">AdminLogOut</a>
                     </div>
                 <%}%>
             
@@ -32,25 +32,25 @@
                         <a class="btn btn-warning" role="button" href="/employee/showListToReview">To Review</a>
                     </div>
                     <div class="side-div-nav">
-                        <a class="btn btn-warning" href="/employee/review/myReviews">My-reviews</a>
+                        <a class="btn btn-warning" href="/employee/review/myReviews">My Reviews</a>
                     </div>
                 <%}%>
             
                 <%if(locals.user && !user.isAdmin){%>
                     <div class="side-div-nav">
-                        <a class="btn btn-warning" role="button" href="/employee/logout">EmployeeLogout</a>
+                        <a class="btn btn-warning" role="button" href="/employee/logout">Employee Logout</a>
                     </div>
                 <%}%>
             
                 <%if(!locals.user){%>
                     <div class="side-div-nav">
-                        <a class="btn btn-warning" href="/employeeLogin">EmployeeLogin</a>
+                        <a class="btn btn-warning" href="/employeeLogin">Employee Login</a>
                     </div>
                     <div class="side-div-nav">
-                        <a class="btn btn-warning" href="/adminLogin">AdminLogin</a>
+                        <a class="btn btn-warning" href="/adminLogin">Admin Login</a>
                     </div>
                     <div class="side-div-nav">
-                        <a class="btn btn-warning" href="/employeeSignup">EmployeeSignUp</a>
+                        <a class="btn btn-warning" href="/employeeSignup">Employee SignUp</a>
                     </div>
                 <%}%>
             
@@ -91,17 +91,17 @@
 
         <%if(locals.user && !user.isAdmin){%>
             
-                <a class="btn btn-warning" role="button" href="/employee/logout">EmployeeLogout</a>
+                <a class="btn btn-warning" role="button" href="/employee/logout">Employee Logout</a>
             
         <%}%>
 
         <%if(!locals.user){%>
-
-                <a class="btn btn-warning" href="/employeeLogin">EmployeeLogin</a>
+            
+                <a class="btn btn-warning" href="/adminLogin">Admin Login</a>
+                
+                <a class="btn btn-warning" href="/employeeLogin">Employee Login</a>
         
-                <a class="btn btn-warning" href="/adminLogin">AdminLogin</a>
-        
-                <a class="btn btn-warning" href="/employeeSignup">EmployeeSignUp</a>
+                <a class="btn btn-warning" href="/employeeSignup">Employee SignUp</a>
         <%}%>
     </ul>
 </div>

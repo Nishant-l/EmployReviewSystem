@@ -1,6 +1,17 @@
-<h1>Employee Login</h1>
-<form action="/employeeLogin-form" method="post">
-    <input type="text" name="email" id="" placeholder="email">
-    <input type="password" name="password" id="" required placeholder="password">
-    <input type="submit">
-</form>
+<div class="form">
+    <h1>Employee Login</h1>
+    <link rel="stylesheet" href="/css/signin.css">
+    <form action="/employeeLogin-form" method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input class="form-control" type="text" name="email" id="email" placeholder="abc@xyz.com">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input class="form-control" type="password" name="password" id="exampleInputPassword1" required placeholder="password">
+        </div>
+        <button type="submit" class="btn btn-dark ">Submit</button>
+    </form>
+</div>
