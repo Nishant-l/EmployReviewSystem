@@ -1,13 +1,52 @@
-<h1>Review</h1>
-<h1><%= employee.name %></h1>
-
-<form action="/employee/review/fidback-form/<%= employee._id %>" method="post">
-
-    <input type="radio" name="feedback" id="" value="5">Best😁
-    <input type="radio" name="feedback" id="" value="4">Good🙂
-    <input type="radio" name="feedback" id="" value="3">Ok😐
-    <input type="radio" name="feedback" id="" value="2">Poor🙁
-    <input type="radio" name="feedback" id="" value="1">very Poor😡
-    <input type="submit">
-
-</form>
+<link rel="stylesheet" href="/css/reviewForm.css">
+<div id="ReviewContainer">
+    <h1>Review</h1>
+    <article class="panel is-success" id="reviewOptionsContainer">
+        <p class="panel-heading">
+            <%= employee.name %>
+        </p>
+        <form action="/employee/review/fidback-form/<%= employee._id %>" method="post">
+        
+            <div class="panel-block">
+                <label class="radio" >
+                    😁 || <input type="radio" name="feedback" id="" value="5" >
+                    Best
+                </label>
+            </div>
+    
+            <div class="panel-block">
+                <label class="radio">
+                    🙂 || <input type="radio" name="feedback" id="" value="4">
+                    Good
+                </label>
+            </div>
+    
+            <div class="panel-block">
+                <label class="radio">
+                    😐 || <input type="radio" name="feedback" id="" value="3">
+                    Ok
+                </label>
+            </div>
+    
+            <div class="panel-block">
+                <label class="radio">
+                    🙁 || <input type="radio" name="feedback" id="" value="2">
+                    Poor
+                </label>
+            </div>
+    
+            <div class="panel-block">
+                <label class="radio">
+                    😡 || <input type="radio" name="feedback" id="" value="1">
+                    very Poor
+                </label>
+            </div>
+            <div class="panel-block">
+                <button type="submit" class="button is-link is-outlined is-fullwidth">
+                    Submit Review for <%= employee.name %>
+                </button>
+            </div>
+        
+        </form>
+    </article>
+</div>
