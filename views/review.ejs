@@ -7,45 +7,41 @@
         </p>
         <form action="/employee/review/fidback-form/<%= employee._id %>" method="post">
         
-            <div class="panel-block">
-                <label class="radio" >
+            <label class="radio" >
+            </label>
+            
+                <label class="radio panel-block" >
                     😁 || <input type="radio" name="feedback" id="" value="5" >
                     Best
                 </label>
-            </div>
     
-            <div class="panel-block">
-                <label class="radio">
+            
+                <label class="radio panel-block">
                     🙂 || <input type="radio" name="feedback" id="" value="4">
                     Good
                 </label>
-            </div>
     
-            <div class="panel-block">
-                <label class="radio">
+            
+                <label class="radio panel-block">
                     😐 || <input type="radio" name="feedback" id="" value="3">
                     Ok
                 </label>
-            </div>
     
-            <div class="panel-block">
-                <label class="radio">
+            
+                <label class="radio panel-block">
                     🙁 || <input type="radio" name="feedback" id="" value="2">
                     Poor
                 </label>
-            </div>
     
-            <div class="panel-block">
-                <label class="radio">
+            
+                <label class="radio panel-block">
                     😡 || <input type="radio" name="feedback" id="" value="1">
-                    very Poor
+                    Very Poor
                 </label>
-            </div>
-            <div class="panel-block">
+            
                 <button type="submit" class="button is-link is-outlined is-fullwidth">
                     Submit Review for <%= employee.name %>
                 </button>
-            </div>
         
         </form>
     </article>

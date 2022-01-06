@@ -1,9 +1,16 @@
-<h1>List of employee to be reviewed</h1>
-
-<ul>
-    <%for(i of employee.toReview){%>
-        <li>
-            <a href="/employee/review/form/<%=i._id%>"><%=i.name %></a>
-        </li>
-    <%}%>
-</ul>
+<link rel="stylesheet" href="/css/ToReviewList.css">
+<div id="ToReviewListContainer">
+    <h1>List of employee to be reviewed</h1>
+    <article class="panel is-danger">
+        <p class="panel-heading">
+            Select Employee name from the list to be reviewed
+        </p>
+    
+            <%for(i of employee.toReview){%>
+                <a class="panel-block" href="/employee/review/form/<%=i._id%>">
+                      👤 &nbsp;<%=i.name %>
+                </a>
+            <%}%>
+    
+    </aside>
+</div>
