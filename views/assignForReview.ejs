@@ -1,37 +1,61 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<form action="/admin/assignForReview-form" method="post">
-    
-    <h3>Select member who will review</h3>
-    <ul class="block">
-        <%for(e of employe){%>
-            <li id= "<%=e._id%>" >
-                <%= e.name %>
-                <input type="radio" name="reveiwer" value="<%=e._id%>">
-            </li>
-        <%}%>
-    </ul>
-
-    <h3>Select member to be reviewrd</h3>
-    <ul class="bloc">
-        <%for(e of employe){%>
-            <li id= "<%=e._id%>" >
-                <%= e.name %>
-                <input type="checkbox" name="toBeReviewed" value="<%=e._id%>" class="<%=e._id%>">
-            </li>
-        <%}%>
-    </ul>
-    <input type="submit">
+<link rel="stylesheet" href="/css/asignForReview.css">
+<form action="/admin/assignForReview-form" method="post" id="assignForm" >
+    <div id="assignContainer">
+        <article class="panel is-primary" id="left">
+            <p class="panel-heading" >
+                Select member who will review
+            </p>
+            <div>
+                <%for(e of employe){%>
+                    <div class="panel-block is-active" id= "<%=e._id%>" >
+                        <label class="radio">
+                            👤 <%= e.name %>
+                            <input type="radio" name="reveiwer" value="<%=e._id%>">
+                        </label>
+                    </div>
+                <%}%>
+            </div>
+        </article>
+        <article class="panel is-danger" id="right">
+            <p class="panel-heading">
+                Select member to be reviewrd
+            </p>
+            <div>
+                <%for(e of employe){%>
+                    <div class="panel-block is-active" >
+                        <label class="checkbox" id= "right<%=e._id%>">
+                            👤 <%= e.name %>
+                            <input  type="checkbox" name="toBeReviewed" value="<%=e._id%>" class="<%=e._id%>">
+                        </label>
+                    </div>
+                <%}%>
+            </div>
+        </article>
+    </div>
+    <input id="subBut" class="button is-info" type="submit">
 </form>
 <script src="/demo.js"></script>
+
+
 <!-- <script> // ToDo: for making the check box inactive when the employ is alredy assigned for review or reviewed by the peer employee
-    const aa = document.querySelector('.block');
+    const aa = document.getElementById('left');
+    const hasClicked = new Set();
     aa.addEventListener('click',(e)=>{
-        console.log(e.target);
-        const bb = document.querySelector('.bloc');
-        const cc = bb.querySelector(e.target.value);
-        console.log(cc);
+        const bb = document.getElementById('right');
+        const cc = document.getElementById('right'+e.target.value);
+        for(i of hasClicked){
+            if(i!=null){
+                i.firstElementChild.Attribute('enabled')
+                i.setAttribute('disabled',false);
+            }
+        }
+        hasClicked.add(cc);
+        console.log(hasClicked);
+        console.log(cc.firstElementChild)
+        cc.firstElementChild.setAttribute('disabled',true)
+        cc.setAttribute('disabled',true);
     });
-</script> --> 
+</script>  -->
 <!-- <% const regex = new RegExp("[e]") %> //ToDo: implement the search functionality
 
 <%= employe.filter(e => regex.test(e.name)) %> -->

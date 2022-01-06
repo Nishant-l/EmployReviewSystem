@@ -1,0 +1,9 @@
+#myReviewContainer{
+    width: 60%;
+}
+#mainContainerMyReview{
+    display: flex;
+    flex-direction: row;
+    margin-top: 4%;
+    justify-content: space-around;
+}

@@ -1,10 +1,19 @@
-<h1>My Review by others</h1>
-<!-- <%= locals.myInfo%> -->
-<ul>
-<%for(i of myInfo.myReview){%>
-    <li>
-        <%= i.reviewScore %>
-        <%= i.reviewedBy.name%>
-    </li>
-<%}%>
-</ul>
+<link rel="stylesheet" href="/css/myRevier.css">
+<div id="mainContainerMyReview">
+    <div class="box block" id="myReviewContainer">
+        <h1 class="block">My Review by others</h1>
+        <!-- <%= locals.myInfo%> -->
+        <table class="table" >
+            <thead>
+                <th>Reveiwers Name</th>
+                <th>Review on scale(1-5)</th>
+            </thead>
+        <%for(i of myInfo.myReview){%>
+            <tr>
+                <td><%= i.reviewedBy.name%></td>
+                <td><%= i.reviewScore %></td>
+            </tr>
+        <%}%>
+        </table>
+    </div>
+</div>
