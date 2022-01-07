@@ -44,11 +44,15 @@ module.exports.assignForReviewForm = (req,res) => {
 
 module.exports.makeAdmin = (req,res) => {
     Employee.find({},(err,Allemployee)=>{
-        res.render('makeAdmin',{allEmployee:Allemployee});
+        return res.render('makeAdmin',{allEmployee:Allemployee});
     })
 }
 
 module.exports.makeAdmin_form = (req,res) => {
+
+    if(req.body.futureAdmin == null){
+        return res.redirect('back');
+    }
 
     if(typeof(req.body.futureAdmin)!='object'){ //if a single check box is checked the convert it to arrays
         req.body.futureAdmin = [req.body.futureAdmin];
@@ -58,7 +62,7 @@ module.exports.makeAdmin_form = (req,res) => {
         Employee.findById(em,(err,emp)=>{ // find the emp in the database 
             emp.isAdmin = true; // update the is addmin field
             emp.save();
-            res.redirect('back');
         })
     }
+    return res.redirect('back');
 }

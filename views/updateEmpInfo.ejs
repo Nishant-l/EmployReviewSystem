@@ -1,29 +1,74 @@
-<h1>Update Employee Info</h1>
+<link rel="stylesheet" href="/css/updateEmployeeinvo.css">
+<div id="mainContainer">
+    <h1 class="subtitle is-1">Update Employee Info</h1>
+ 
+    <div id="formContainer">     
+        <h3 class="subtitle is-3"><label for="changeEmpInfo">Change employee personal info</label></h3>
+        <form action="/admin/employeeManagement/update-form/<%= empInfo._id %>" id="changeEmpInfo" method="post">
+            <div class="field">
+                <label class="label" for="name">Name</label>
+                <div class="control">
+                    <input class="input"  type="text" value="<%= empInfo.name %>" id="name" name="name"><br>
+                </div>
+            </div>
+        
+            <div class="field">
+                <label class="label" for="email">Email</label>
+                <div class="control">
+                    <input class="input" type="text" name="email" id="email" value="<%= empInfo.email %>">
+                </div>
+            </div>
+            <div class="field">
+                <input class="button is-link" type="submit">
+            </div>
+        </form>
+    </div>
+    
 
-<h3><label for="changeEmpInfo">Change employee personal info</label></h3>
-<form action="/admin/employeeManagement/update-form/<%= empInfo._id %>" id="changeEmpInfo" method="post">
-    <label for="name">Name</label>
-    <input type="text" value="<%= empInfo.name %>" id="name" name="name"><br>
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email" value="<%= empInfo.email %>"><br>
-    <input type="submit">
-</form><br>
-
-<h3><label for="MyReview">review of <%=empInfo.name%></label></h3>
-<ul id="MyReview">
-    <%for(rev of empInfo.myReview){%>
-        <li>
-            <%= rev.reviewScore%>
-            <%= rev.reviewedBy.name%>&nbsp;
-            <!-- <a href="/admin/employeeManagement/ReviewView/<%= empInfo._id %>">✏️</a> -->
-            <form action="/admin/employeeManagement/updateReview-form/?reviewOf=<%= empInfo._id %>&reviewedBy=<%= rev.reviewedBy._id %>" method="post">
-                <input type="radio" name="feedback" id="" value="5" <% if(rev.reviewScore == 5) {%> checked <%}%> >Best😁
-                <input type="radio" name="feedback" id="" value="4" <% if(rev.reviewScore == 4) {%> checked <%}%> >Good🙂
-                <input type="radio" name="feedback" id="" value="3" <% if(rev.reviewScore == 3) {%> checked <%}%> >Ok😐
-                <input type="radio" name="feedback" id="" value="2" <% if(rev.reviewScore == 2) {%> checked <%}%> >Poor🙁
-                <input type="radio" name="feedback" id="" value="1" <% if(rev.reviewScore == 1) {%> checked <%}%> >very Poor😡
-                <input type="submit">
-            </form>
-        </li>
-    <%}%>
-</ul>
+    <div id="reviewContaoner">
+        <h3 class="subtitle is-3"><label for="MyReview">Change Reviews of <%=empInfo.name%></label></h3>
+        <div>
+            <%for(rev of empInfo.myReview){%>
+                <article class="panel is-success"id="MyReview">
+                        <p class="panel-heading" style="font-size: small;">
+                            Score given by <%= rev.reviewedBy.name%>:&nbsp;
+                            <span class="badge bg-dark""><%= rev.reviewScore%></span>
+                        </p>
+                        <!-- <a href="/admin/employeeManagement/ReviewView/<%= empInfo._id %>">✏️</a> -->
+                        <form action="/admin/employeeManagement/updateReview-form/?reviewOf=<%= empInfo._id %>&reviewedBy=<%= rev.reviewedBy._id %>" method="post">
+                            <label class="radio" >
+                            </label>
+                            
+                            <label class="radio panel-block" >
+                                <input type="radio" name="feedback" id="" value="5" <% if(rev.reviewScore == 5) {%> checked <%}%> >Best😁
+    
+                            </label>
+    
+                            <label class="radio panel-block" >
+                                <input type="radio" name="feedback" id="" value="4" <% if(rev.reviewScore == 4) {%> checked <%}%> >Good🙂
+    
+                            </label>
+    
+                            <label class="radio panel-block" >
+                                <input type="radio" name="feedback" id="" value="3" <% if(rev.reviewScore == 3) {%> checked <%}%> >Ok😐
+    
+                            </label>
+    
+                            <label class="radio panel-block" >
+                                <input type="radio" name="feedback" id="" value="2" <% if(rev.reviewScore == 2) {%> checked <%}%> >Poor🙁
+    
+                            </label>
+    
+                            <label class="radio panel-block" >
+                                <input type="radio" name="feedback" id="" value="1" <% if(rev.reviewScore == 1) {%> checked <%}%> >very Poor😡
+    
+                            </label>
+                            <button type="submit" class="button is-link is-outlined is-fullwidth">
+                                Update Review
+                            </button>
+                        </form>
+                    </article>
+                <%}%>
+        </div>
+    </div>
+</div>

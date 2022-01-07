@@ -30,7 +30,7 @@ module.exports.updateEmpInfo_form = (req,res)=>{ // controller to update employe
             employee.name = req.body.name;
             employee.email = req.body.email;
             employee.save();
-            res.redirect('back');
+            return res.redirect('back');
             console.log(employee);
         }
         return res.redirect('back');

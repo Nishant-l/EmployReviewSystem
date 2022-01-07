@@ -1,24 +1,67 @@
-<h1>Create new Employee</h1>
-<form action="/employeeSignUp-form" method="post">
-    <input type="email" name="email" id="" placeholder="email" required>
-    <input type="password" name="password" id="" placeholder="password" required>
-    <input type="text" name="name" id="" placeholder="name" required>
-    <input type="submit">
-</form>
-
-<h1>List Of All Employees</h1>
-
-<table style="width: 40%;">
-    <tr>
-        <th>Name of employee</th>
-        <th>Update Employee details and review</th>
-        <th>Delete employee</th>
-    </tr>
-    <% for(emp of AllEmployee){%>
-        <tr>
-            <td><h3 style="display: inline;"><%= emp.name %></h3></td>
-            <td><a href="/admin/employeeManagement/Update-emloyee-profile/<%= emp.id %>">✏️</a></td>
-            <td><a href="/admin/employeeManagement/deleteAnEmployee/<%= emp.id %>">🗑</a></td>
-        </tr>
-    <%}%>
-</table>
+<link rel="stylesheet" href="/css/adminManagement.css">
+<div id="AdminBodyContainer">
+    <div id="newEmpCreation">
+        <h3 class="subtitle is-3">Create new Employee</h3>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Create New Employee
+        </button>
+    </div>
+    
+    <div id="MarkEmp">
+        <h3 class="subtitle is-3">List Of All Employees</h3>
+        
+        <table style="width: 40%;" class="table is-fullwidth is-hoverable is-striped is-narrow">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(emp of AllEmployee){%>
+                    <tr>
+                        <td style="font-size: medium; font-weight: 500; color: #777;"><%= emp.name %></td>
+                        <td><a style="text-decoration: none;" class="button is-info is-outlined" href="/admin/employeeManagement/Update-emloyee-profile/<%= emp.id %>">✏️</a></td>
+                        <td><a style="text-decoration: none;" class="button is-primary is-outlined" href="/admin/employeeManagement/deleteAnEmployee/<%= emp.id %>">🗑</a></td>
+                    </tr>
+                <%}%>
+            </tbody>
+        </table>
+    </div>
+    
+    
+    <!-- Button trigger modal -->
+      
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/employeeSignUp-form" method="post">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input class="form-control" type="email" name="email" id="exampleInputEmail1" placeholder="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Temperary Password</label>
+                        <input class="form-control" type="password" name="password" id="password" placeholder="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name of Employee</label>
+                        <input class="form-control" type="text" name="name" id="name" placeholder="name" required>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
