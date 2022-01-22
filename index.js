@@ -5,6 +5,8 @@ const localStrategy = require('./config/pasport-local-strategy');
 const session = require('express-session');
 const layout = require('express-ejs-layouts');
 const mongoStore = require('connect-mongo');
+const flash = require('connect-flash');
+const customeMWare = require('./config/midelware');
 const port = 8080;
 
 const app = express();
@@ -35,6 +37,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customeMWare.setFlash);
 
 app.use('/',require('./routs'));
 

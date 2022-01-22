@@ -3,6 +3,7 @@ const Employee = require('../model/employe');
 
 module.exports.employeeLogIn = (req,res) =>{
     if(req.isAuthenticated()){
+        req.flash('success','Successfully LogIn');
         return res.redirect('/employee/showListToReview');
     }
     return res.render('employeLogin');
@@ -32,8 +33,10 @@ module.exports.createEmployee = (req,res) => {
     },(err)=>{
         if(err){
             console.log('email alredy exists');
+            req.flash('error','Employee with same Email alredy exists');
             return res.redirect('back');
         }
+        req.flash('success','Successfully created new Employee');
         return res.redirect('back');
     })
 }

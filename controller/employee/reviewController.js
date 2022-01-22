@@ -11,7 +11,6 @@ module.exports.homeView = (req,res)=>{
 module.exports.review_form = (req,res) => {
 
         Employee.findById(req.params.id,(err,empToBeReviewed)=>{ //find the employee who is to be reviewed
-            console.log(empToBeReviewed);
             const valuee = {
                 reviewedBy:req.user._id,
                 reviewScore:req.body.feedback
@@ -21,6 +20,7 @@ module.exports.review_form = (req,res) => {
                 reveiwerr.hadReviewed.push(req.params.id);
                 reveiwerr.save();
                 empToBeReviewed.save();
+                req.flash('success','Successfully Submited Review');
                 res.redirect(`/employee/showListToReview`);
             })
             

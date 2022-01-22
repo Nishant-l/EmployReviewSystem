@@ -18,9 +18,7 @@ module.exports.updateEmployeeProfile = (req,res) => { //controller to display a 
                 }
             })
             .exec((err,emp)=>{
-                // console.log(req.params);
                 res.render('updateEmpInfo',{empInfo:emp});
-                // console.log(emp);
             })
 }
 
@@ -30,9 +28,10 @@ module.exports.updateEmpInfo_form = (req,res)=>{ // controller to update employe
             employee.name = req.body.name;
             employee.email = req.body.email;
             employee.save();
+            req.flash('success','Successfully Updated Employee Info');
             return res.redirect('back');
-            console.log(employee);
         }
+        req.flash('error','Same info was send');
         return res.redirect('back');
     })
 }
@@ -60,6 +59,7 @@ module.exports.updateReviewForm = (req,res)=>{ //controller to update the review
             }
         }
     })
+    req.flash('success','Successfully Updated Review');
     return res.redirect('back');
 }
 
@@ -82,6 +82,7 @@ module.exports.deleteAnEmployee = (req,res) => {
                 await Employee.findByIdAndUpdate(i.reviewedBy,{$pull:{hadReviewed:e.id}}) //deleated the to be deleated employee from the emp list emp list had reviewed
             }
             e.remove(); //delete the to be deleated employee from db
+            req.flash('success','Successfully Deleated employee and the associated reviews');
         })
         .then(()=>res.redirect('back')); //redirect back to the page
     }

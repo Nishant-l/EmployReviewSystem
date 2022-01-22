@@ -12,6 +12,7 @@ passport.use(new localStrategy({usernameField:'email',passReqToCallback:true},(r
         }
         if(!user || user.password != password){
             console.log('wrong password employee ----> passport');
+            req.flash('error','invalid username/Password or you are not admin');
             return done(null,false);
         }
         if(user && user.password == password){ //if user and password are both valid
@@ -23,6 +24,7 @@ passport.use(new localStrategy({usernameField:'email',passReqToCallback:true},(r
             console.log('login successfull of employeee -----> passport');
             return done(null,user);
         }
+        req.flash('error','invalid username/Password or you are not admin');
         return done(null,false);
     })
 }));

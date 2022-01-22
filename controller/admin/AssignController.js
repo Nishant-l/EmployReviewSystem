@@ -8,6 +8,7 @@ module.exports.assignForReview = (req,res) => {
 
 module.exports.logout = (req,res) => {
     req.logout();
+    req.flash('success','Loged Out');
     res.redirect('/adminLogin');
 }
 
@@ -34,12 +35,17 @@ module.exports.assignForReviewForm = (req,res) => {
                     reveiwer.toReview.push(r); 
                 }
             }
+            reveiwer.save(); //save the changes in database
         }
-        reveiwer.save(); //save the changes in database
         // console.log(reveiwer.toReview)
+        if(err){
+            req.flash('error','error assigned for review');
+            return res.redirect('back');
+        }
+        req.flash('success','Successfully assigned for review');
+        return res.redirect('back');
     })
     // console.log(req.body);
-    res.redirect('back');
 }
 
 module.exports.makeAdmin = (req,res) => {
@@ -51,6 +57,7 @@ module.exports.makeAdmin = (req,res) => {
 module.exports.makeAdmin_form = (req,res) => {
 
     if(req.body.futureAdmin == null){
+        req.flash('error','selected none');
         return res.redirect('back');
     }
 
@@ -64,5 +71,6 @@ module.exports.makeAdmin_form = (req,res) => {
             emp.save();
         })
     }
+    req.flash('success','Successfully made them Admins');
     return res.redirect('back');
 }
