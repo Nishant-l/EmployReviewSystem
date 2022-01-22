@@ -1,5 +1,4 @@
 const express = require('express');
-const { isFunctionOrConstructorTypeNode } = require('typescript');
 const router = express.Router();
 const empMngController = require('../../controller/admin/employeeManagementController');
 
