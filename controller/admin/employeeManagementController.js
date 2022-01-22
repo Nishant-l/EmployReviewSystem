@@ -85,5 +85,8 @@ module.exports.deleteAnEmployee = (req,res) => {
             req.flash('success','Successfully Deleated employee and the associated reviews');
         })
         .then(()=>res.redirect('back')); //redirect back to the page
+    }else{
+        req.flash('error','Can not delete oneself/ Please ask other admin to delete You');
+        return req.redirect('back');
     }
 }

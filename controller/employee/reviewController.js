@@ -11,6 +11,10 @@ module.exports.homeView = (req,res)=>{
 module.exports.review_form = (req,res) => {
 
         Employee.findById(req.params.id,(err,empToBeReviewed)=>{ //find the employee who is to be reviewed
+            if(req.body.feedback==null){
+                req.flash('error','please chose reting before submitting');
+                return res.redirect('back');
+            }
             const valuee = {
                 reviewedBy:req.user._id,
                 reviewScore:req.body.feedback
@@ -23,6 +27,10 @@ module.exports.review_form = (req,res) => {
                 req.flash('success','Successfully Submited Review');
                 res.redirect(`/employee/showListToReview`);
             })
+            if(err){
+                req.flash('error','please chose reting before submitting');
+                return res.redirect('back');
+            }
             
         })
         // console.log(req.body);
